@@ -1,3 +1,172 @@
+/* Keyframes */
+
+.background-color-home {
+    background-color: #000066;
+    height: 100vh; 
+    position: relative; 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+}
+
+.background-color-home-bis {
+    background-color: #000066;
+    height: 55vh; 
+    z-index: 1;
+    position: relative; 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+}
+
+.background-color-contact {
+    background-color: #000066;
+    height: 80vh;
+    position: relative;
+    background-repeat: no-repeat; 
+    background-position: center;
+}
+
 body {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: whitesmoke;
+}
+
+/* .custom-navbar {
+    height: 120px;
+} */
+
+.contact-margin-top {
+    padding-top: 2.09rem;
+}
+
+.content-section {
+    position: absolute;
+    left: 150px; /* ajustez pour l'espacement par rapport à la gauche */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.content-section-bis {
+    position: absolute;
+    right: auto;
+    top: 50%;
+    transform: translateX(auto);
+}
+
+.custom-contact-form {
+    width: 1200px;
+    padding: 25px;
+    margin-bottom: auto;
+}
+
+.custom-login {
+    min-height: 95vh;
+}
+
+.custom-registration {
+    min-height: 100vh;
+}
+
+.custom-terms {
+    padding-top: 5%;
+}
+
+.custom-text {
+    color: white;
+}
+
+.custom-title {
+    color: white;
+}
+
+.img-home {
+    image-resolution: auto;
+    image-rendering: auto;
+    min-height: 78px;
+    border-radius: 45px;
+}
+
+footer {
+    min-height: 390px;
+    /* background-color: #e5e5e5; */
+}
+
+.form-control {
+    border: 1px solid #555;
+}
+
+.border-top {
+    width: 92%;
+    margin: auto;
+}
+
+.error-message {
+    color: red;
+}
+
+input {
+    display: inline-block;
+}
+
+.upper-footer {
+    width: 92%;
+    margin: auto;
+}
+
+/* .background-image-contact {
+
+} */
+
+.navbar {
+    padding: 25px;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.sticky-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.social-icon {
+    display: inline-flex; /* Assure que l'icône est bien centrée dans le carré */
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Définit la largeur du carré */
+    height: 40px; /* Définit la hauteur du carré */
+    border: 2px solid; /* Définit la bordure du carré */
+    border-radius: 10px; /* Arrondit légèrement les coins du carré (mets 0 pour des coins droits) */
+    text-align: center; /* Centre l'icône à l'intérieur du carré */
+    margin-right: 10px;
+}
+
+/* .social-icon:hover {
+
+} */
+
+.text-h {
+    padding-top: 3.25%;
+}
+
+/* On Chrome, Edge, Opera and Safari */
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-corner {
+    background: grey;
+}
+
+::-webkit-scrollbar-track {
+    background: lightgrey;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: grey;
+    border-radius: 20px;
+    border: 3px solid grey;
 }

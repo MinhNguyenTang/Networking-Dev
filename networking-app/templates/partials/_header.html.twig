@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-navbar custom-navbar shadow-sm bg-white rounded-0">
+    <div class="container-fluid">
+      {% if not app.user %}
+        <a class="navbar-brand" href="{{ path('app_home') }}">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor04">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="{{ path('app_registration') }}" class="no-underline">S'inscrire</a>
+            </li>
+            <li class="nav-item ms-5">
+              <a href="{{ path('app_login') }}" class="no-underline">Se connecter</a>
+            </li>
+          </ul>
+        </div>
+      {% else %}
+        <a class="navbar-brand" href="{{ path('app_home') }}">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor04">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown ">
+              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.fullName }}</a>
+              <div class="dropdown-menu dropdown-menu-lg-end shadow p-4">
+                <a class="dropdown-item" href="{{ path('app_profile') }}">Informations personnelles</a>
+                <a class="dropdown-item" href="#">Evénements à venir</a>
+                <a class="dropdown-item" href="#">Notifications</a>
+                <a class="dropdown-item" href="#">Historique</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Aide {{ ux_icon('ic:sharp-help-outline') }}</a>
+                <a class="dropdown-item" href="{{ path('app_logout', { 'token': csrf_token('logout') }) }}">Déconnexion {{ ux_icon('material-symbols:logout-sharp') }}</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+  </nav>

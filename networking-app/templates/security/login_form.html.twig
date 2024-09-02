@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    
+    <div class="container d-flex justify-content-center align-items-center custom-registration">
+        <form class="col-lg-4 mx-auto" action="{{ path('app_login') }}" method="post"> 
+            <H5>Ravi de vous revoir !</H5>
+
+            {% if error %}
+                <div>
+                    <p class="error-message">{{ ux_icon('iconamoon:attention-circle-light') }} {{ error.messageKey|trans(error.messageData, 'security') }}</p>
+                </div>
+            {% endif %}
+
+            <label for="username" class="form-label mt-3">Adresse e-mail professionnel</label>
+            <input type="text" class="form-control" id="username" name="_username" 
+            pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Adresse e-mail incorrecte" value="{{ last_username }}" 
+            required>
+
+            <label for="password" class="form-label mt-3">Mot de passe</label>
+            <div class="toggle-password-container">
+                <input type="password" class="form-control" id="password" name="_password" 
+                data-controller="symfony--ux-toggle-password--toggle-password" 
+                data-symfony--ux-toggle-password--toggle-password-hidden-label-value="Hide" 
+                data-symfony--ux-toggle-password--toggle-password-visible-label-value="Show" 
+                data-symfony--ux-toggle-password--toggle-password-hidden-icon-value="Default" 
+                data-symfony--ux-toggle-password--toggle-password-visible-icon-value="Default" 
+                data-symfony--ux-toggle-password--toggle-password-button-classes-value="[&quot;toggle-password-button&quot;]" 
+                required>
+            </div>
+
+            <small><a href="#" class="float-end no-underline mt-3">Mot de passe oublié ?</a></small>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input type="hidden" name="_target_path" value="{{ path('app_home') }}">
+    
+            <button type="submit" class="btn btn-primary col-md-12 mt-3">Se connecter</button>
+
+            <p class="mt-3">Vous souhaitez nous rejoindre ? <a class="no-underline" href="{{ path('app_registration') }}">Inscrivez-vous</a></p>
+        </form>
+    </div>
+
+{% endblock %}

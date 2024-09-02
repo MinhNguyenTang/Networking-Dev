@@ -1,0 +1,49 @@
+<footer class="mt-5">
+    <!-- Section supérieure du footer -->
+    <div class="upper-footer d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+        <div class="col-md-4 d-flex align-items-center">
+            <ul class="nav list-unstyled d-flex flex-column align-items-left mt-5">
+                <h6>Plateforme</h6>
+                <li class="mt-2"><a href="{{ path('app_home') }}" class="text-body-secondary no-underline">Accueil</a></li>
+                <li class="mt-1"><a href="{{ path('app_login') }}" class="text-body-secondary no-underline">Se connecter</a></li>
+                <li class="mt-1"><a href="{{ path('app_registration') }}" class="text-body-secondary no-underline">Créer un compte</a></li>
+                <ul class="nav list-unstyled d-flex flex-row align-items-left mt-2">
+                    <li><a href="#" class="social-icon">{{ ux_icon('vaadin:facebook') }}</a></li>
+                    <li><a href="#" class="ms-3 social-icon">{{ ux_icon('fa:instagram') }}</a></li>
+                    <li><a href="#" class="ms-3 social-icon">{{ ux_icon('streamline:linkedin-solid') }}</a></li>
+                </ul>
+            </ul>
+        </div>
+
+        <div>
+            <ul class="nav list-unstyled d-flex flex-column align-items-right">
+                <h6>Contactez-nous</h6>
+                <li class="text-body-secondary no-underline mt-2">Adresse</li>
+                <li class="text-body-secondary no-underline mt-1">Téléphone</li>
+                <li class="mt-1"><a class="mt-1"><a href="{{ path('app_contact')}}" class="text-body-secondary no-underline">Envoyez-nous un message</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <ul class="nav list-unstyled d-flex flex-column align-items-right">
+                <h6>À propos de ...</h6>
+                <li class="mt-2"><a href="{{ path('app_who') }}" class="text-body-secondary no-underline">Qui sommes-nous ?</a></li>
+                <li class="mt-1"><a href="{{ path('app_blog') }}" class="text-body-secondary no-underline">Blog</a></li>
+                <li class="mt-1"><a href="{{ path('app_faq') }}" class="text-body-secondary no-underline">FAQ</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section inférieure du footer -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="d-flex align-items-left justify-content-left">
+            <span class="mb-3 mb-md-0 text-body-secondary mt-5">&copy; Tous droits réservés</span>
+        </div>
+        
+        <ul class="nav align-items-center justify-content-right list-unstyled d-flex mt-5">
+            <li class=""><a class="text-body-secondary no-underline" href="{{ path('app_use') }}">Conditions d'utilisation</a></li>
+            <li class=""><a class="text-body-secondary no-underline ms-5" href="{{ path('app_legal') }}">Mentions légales</a></li>
+            <li class=""><a class="text-body-secondary no-underline ms-5" href="{{ path('app_privacy') }}">Politique de confidentialité</a></li>
+        </ul>
+    </div>
+</footer>
