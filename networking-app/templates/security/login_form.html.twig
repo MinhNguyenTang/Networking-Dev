@@ -6,7 +6,7 @@
     
     <div class="container d-flex justify-content-center align-items-center custom-registration">
         <form class="col-lg-4 mx-auto" action="{{ path('app_login') }}" method="post"> 
-            <H5>Ravi de vous revoir !</H5>
+            <H5><strong>Ravi de vous revoir !</strong></H5>
 
             {% if error %}
                 <div>
@@ -14,7 +14,7 @@
                 </div>
             {% endif %}
 
-            <label for="username" class="form-label mt-3">Adresse e-mail professionnel</label>
+            <label for="username" class="form-label mt-3">Adresse e-mail professionnelle</label>
             <input type="text" class="form-control" id="username" name="_username" 
             pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Adresse e-mail incorrecte" value="{{ last_username }}" 
             required>
@@ -31,7 +31,7 @@
                 required>
             </div>
 
-            <small><a href="#" class="float-end no-underline mt-3">Mot de passe oublié ?</a></small>
+            <small><a href="/reset-password" class="float-end no-underline mt-3">Mot de passe oublié ?</a></small>
 
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             <input type="hidden" name="_target_path" value="{{ path('app_home') }}">

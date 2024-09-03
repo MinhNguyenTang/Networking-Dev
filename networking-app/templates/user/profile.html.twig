@@ -106,8 +106,8 @@
                         .......
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary">Sauvegarder les modifications</button>
                     </div>
                 </div>
                 </div>
@@ -115,28 +115,5 @@
       </ul>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    var editModal = document.getElementById('editModal');
-    editModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget; // Button that triggered the modal
-        var field = button.getAttribute('data-field'); // Extract info from data-* attributes
-
-        // Update the modal title
-        var modalTitle = editModal.querySelector('.modal-title');
-        modalTitle.textContent = 'Modifier ' + field;
-
-        // Load the form dynamically
-        var modalBody = editModal.querySelector('.modal-body');
-        fetch('profile/edit/' + field)
-            .then(response => response.text())
-            .then(html => {
-                modalBody.innerHTML = html;
-            });
-    });
-});
-
-</script>
 
 {% endblock %}
