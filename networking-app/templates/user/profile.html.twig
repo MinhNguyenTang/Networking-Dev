@@ -5,16 +5,15 @@
 {% block body %}
 
 <style>
-    .user-card{
+    .card{
         width: 100%;
-        border-radius: 45px;
     }
     .user-profile-container { 
         margin: auto;
         padding-top: 5%; 
         max-width: 800px; 
         width: 95%; 
-        font: 18px/1.5 sans-serif; 
+        font: 17px/1.5 sans-serif; 
     }
     .example-wrapper code { 
         background: #F5F5F5; padding: 2px 6px; 
@@ -24,19 +23,12 @@
         justify-content: space-between; 
         align-items: center;
     }
-    .left-container {
-        margin: auto;
-        padding-top: 5%; 
-        max-width: 80px; 
-        width: 95%; 
-        font: 18px/1.5 sans-serif; 
-    }
 </style>
 
 <div class="user-profile-container">
-    <div class="user-card">
+    <div class="card">
       <div class="card-header">
-            <h4><strong>Informations personnelles</strong></h4>
+            <h5><strong>Informations personnelles</strong></h5>
       </div>
       <ul class="list-group list-group-flush">
             <li class="spaced list-group-item">
@@ -45,7 +37,7 @@
                     <p id="fullNameDisplay">{{ user.fullName }}</p>
                 </div>
                 <div>
-                    <a href="{{ path('app_edit_field', {'field': 'fullName'}) }}" class="edition-profile-link" data-field="fullName" data-bs-toggle="modal" data-bs-target="#editModal">Modifier</a>
+                    <a href="" class="edition-profile-link" data-field="fullName" data-bs-toggle="modal" data-bs-target="#editModal1">Modifier</a>
                 </div>
             </li>
             <li class="spaced list-group-item">
@@ -54,7 +46,7 @@
                     <p id="emailDisplay">{{ user.email }}</p>
                 </div>
                 <div>
-                    <a href="{{ path('app_edit_field', {'field': 'email'}) }}" class="edition-profile-link" data-field="email" data-bs-toggle="modal" data-bs-target="#editModal">Modifier</a>
+                    <a href="" class="edition-profile-link" data-field="email" data-bs-toggle="modal" data-bs-target="#editModal2">Modifier</a>
                 </div>
             </li>
             <li class="spaced list-group-item">
@@ -63,7 +55,7 @@
                     <p id="phoneNumberDisplay">{{ user.phoneNumber }}</p>
                 </div>
                 <div>
-                    <a href="{{ path('app_edit_field', {'field': 'phoneNumber'}) }}" class="edition-profile-link" data-field="phoneNumber" data-bs-toggle="modal" data-bs-target="#editModal">Modifier</a>
+                    <a href="" class="edition-profile-link" data-field="phoneNumber" data-bs-toggle="modal" data-bs-target="#editModal3">Modifier</a>
                 </div>
             </li>
             <li class="spaced list-group-item">
@@ -72,7 +64,7 @@
                     <p id="passwordDisplay">***********************************************</p>
                 </div>
                 <div>
-                    <a href="{{ path('app_edit_field', {'field': 'password'}) }}" class="edition-profile-link" data-field="password" data-bs-toggle="modal" data-bs-target="#editModal">Modifier</a>
+                    <a href="" class="edition-profile-link" data-field="password" data-bs-toggle="modal" data-bs-target="#editModal4">Modifier</a>
                 </div>
             </li>
             <li class="spaced list-group-item">
@@ -81,7 +73,7 @@
                     <p id="companyDisplay">{{ user.company }}</p>
                 </div>
                 <div>
-                    <a href="{{ path('app_edit_field', {'field': 'company'}) }}" class="edition-profile-link" data-field="company" data-bs-toggle="modal" data-bs-target="#editModal">Modifier</a>
+                    <a href="" class="edition-profile-link" data-field="company" data-bs-toggle="modal" data-bs-target="#editModal5">Modifier</a>
                 </div>
             </li>
             <li class="spaced list-group-item">
@@ -90,30 +82,170 @@
                     <p id="occupationDisplay">{{ user.occupation }}</p>
                 </div>
                 <div>
-                    <a href="{{ path('app_edit_field', {'field': 'occupation'}) }}" class="edition-profile-link" data-field="occupation" data-bs-toggle="modal" data-bs-target="#editModal">Modifier</a>
+                    <a href="" class="edition-profile-link" data-field="occupation" data-bs-toggle="modal" data-bs-target="#editModal6">Modifier</a>
                 </div>
             </li>
 
             <!-- Modal -->
-            <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModal1Label" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="editLabel">Modifier</h1>
+                    <h1 class="modal-title fs-5" id="editLabel"><strong>Nom complet</strong></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        .......
+                        {{ form_start(forms.fullName, { 'attr': { 'id': 'fullNameForm' } }) }}
+                        {{ form_widget(forms.fullName) }}
+                        {{ form_end(forms.fullName) }}
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-primary">Sauvegarder les modifications</button>
+                    <button type="button" class="btn btn-secondary-outline" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary" form="fullNameForm" formaction="{{ path('app_profile') }}">Sauvegarder</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="editModal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModal2Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editLabel"><strong>Adresse e-mail professionnelle</strong></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(forms.email, { 'attr': { 'id': 'emailForm' } }) }}
+                        {{ form_widget(forms.email) }}
+                        {{ form_end(forms.email) }}
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary-outline" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary" form="emailForm" formaction="{{ path('app_profile') }}">Sauvegarder</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="editModal3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModal3Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editLabel"><strong>Numéro de téléphone</strong></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(forms.phoneNumber, { 'attr': { 'id': 'phoneNumberForm' } }) }}
+                        {{ form_widget(forms.phoneNumber) }}
+                        {{ form_end(forms.phoneNumber) }}
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary-outline" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary" form="phoneNumberForm" formaction="{{ path('app_profile') }}">Sauvegarder</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="editModal4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModal4Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editLabel"><strong>Mot de passe</strong></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(forms.password, { 'attr': { 'id': 'passwordForm' } }) }}
+                        {{ form_row(forms.password.password.first) }}
+                        {{ form_row(forms.password.password.second) }}
+                        {{ form_end(forms.password) }}
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary-outline" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary" form="passwordForm" formaction="{{ path('app_profile') }}">Sauvegarder</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="editModal5" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModal5Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editLabel"><strong>Nom de l'entreprise</strong></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(forms.company, { 'attr': { 'id': 'companyForm' } }) }}
+                        {{ form_widget(forms.company) }}
+                        {{ form_end(forms.company) }}
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary-outline" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary" form="companyForm" formaction="{{ path('app_profile') }}">Sauvegarder</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="editModal6" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModal6Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editLabel"><strong>Fonction</strong></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(forms.occupation, { 'attr': { 'id': 'occupationForm' } }) }}
+                        {{ form_widget(forms.occupation) }}
+                        {{ form_end(forms.occupation) }}
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary-outline" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary" form="occupationForm" formaction="{{ path('app_profile') }}">Sauvegarder</button>
                     </div>
                 </div>
                 </div>
             </div>
       </ul>
     </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+          <h5><strong>Supprimer mon compte</strong></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <p>
+                En supprimant votre compte, toutes vos données à caractère personnelle seront
+                immédiatement effacées de notre base de données.
+            </p>
+            <a href="" role="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Supprimer</a>
+          </li>
+        </ul>
+
+        
+        <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editLabel"><strong>Supprimer mon compte</strong></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Etes-vous sûr(e) de vouloir supprimer votre compte ? Cette action est irréversible.
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary-outline" data-bs-dismiss="modal">Annuler</button>
+                <form action="{{ path('app_delete_account') }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('delete_account') }}">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+      </div>
 </div>
 
 {% endblock %}

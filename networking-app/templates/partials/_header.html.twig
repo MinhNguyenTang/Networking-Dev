@@ -26,9 +26,9 @@
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.fullName }}</a>
               <div class="dropdown-menu dropdown-menu-lg-end shadow p-4">
                 <a class="dropdown-item" href="{{ path('app_profile') }}">Informations personnelles</a>
-                <a class="dropdown-item" href="#">Evénements à venir</a>
-                <a class="dropdown-item" href="#">Notifications</a>
-                <a class="dropdown-item" href="#">Historique</a>
+                <a class="dropdown-item" href="{{ path('app_upcoming_events') }}">Evénements à venir</a>
+                <a class="dropdown-item" href="{{ path('app_notifications') }}">Notifications</a>
+                <a class="dropdown-item" href="{{ path('app_passed_events') }}">Historique</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Aide {{ ux_icon('ic:sharp-help-outline') }}</a>
                 <a class="dropdown-item" href="{{ path('app_logout', { 'token': csrf_token('logout') }) }}">Déconnexion {{ ux_icon('material-symbols:logout-sharp') }}</a>

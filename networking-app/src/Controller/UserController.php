@@ -3,20 +3,34 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\UserType;
+use App\Form\UserEmailType;
+use App\Form\UserCompanyType;
+use App\Form\UserFullNameType;
+use App\Form\UserPasswordType;
+use App\Form\UserOccupationType;
+use App\Form\UserPhoneNumberType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
-    #[Route('/profile', name: 'app_profile')]
+    #[Route('/profile', name: 'app_profile', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
-    public function index(UserRepository $userRepository): Response
+    public function index(
+        Request $request,
+        EntityManagerInterface $em,
+        UserRepository $userRepository,
+        UserPasswordHasherInterface $hasher
+        ): Response
     {
         $currentUser = $this->getUser();
 
@@ -30,29 +44,101 @@ class UserController extends AbstractController
             throw new AccessDeniedException('Vous n\'avez pas accès à cette page');
         }
 
+        $forms = [];
+        $fields = ['fullName', 'email', 'phoneNumber', 'password', 'company', 'occupation'];
+
+        foreach ($fields as $field) {
+            switch ($field) {
+                case 'fullName':
+                    $form = $this->createForm(UserFullNameType::class, $user);
+                    break;
+                case 'email':
+                    $form = $this->createForm(UserEmailType::class, $user);
+                    break;
+                case 'phoneNumber':
+                    $form = $this->createForm(UserPhoneNumberType::class,$user);
+                    break;
+                case 'password':
+                    $form = $this->createForm(UserPasswordType::class, $user);
+                    break;
+                case 'company':
+                    $form = $this->createForm(UserCompanyType::class, $user);
+                    break;
+                case 'occupation':
+                    $form = $this->createForm(UserOccupationType::class, $user);
+                    break;
+                default:
+                throw $this->createNotFoundException('Champs non trouvé');
+            }
+            $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid()) {
+                if ($field === 'password' && $form->get('password')->getData()) {
+                    $hashed = $hasher->hashPassword($user, $user->getPassword());
+                    $user->setPassword($hashed);
+                }
+    
+                $dateUpdate = new \DateTimeImmutable();
+                $user->setUpdatedAt($dateUpdate);
+    
+                $em->flush();
+    
+                return $this->redirectToRoute('app_profile');
+            }
+    
+            $forms[$field] = $form->createView();
+        }
+
 
         return $this->render('user/profile.html.twig', [
             'user' => $user,
+            'forms' => $forms
         ]);
     }
 
-    #[Route('/profile/edit/{field}', name: 'app_edit_field', methods: ['GET', 'POST'])]
-    public function editField(Request $request, string $field) : Response
+    #[Route('/delete', name: 'app_delete_account', methods: ['POST'])]
+    public function deleteAccount(
+        Request $request,
+        EntityManagerInterface $em,
+        CsrfTokenManagerInterface $token,
+    ) : Response
     {
-        $form = $this->createForm(UserType::class, $user, ['field' => $field]);
+        $user = $this->getUser();
 
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('app_profile');
+        if (!$user) {
+            throw new AccessDeniedException('You are not allowed to access this page.');
         }
 
-        return $this->render('user/edit_profile_field.html.twig', [
-            'form' => $form->createView(),
-            'field' => $field
-        ]);
+        $csrfToken = $request->request->get('_csrf_token');
+        if (!$token->isTokenValid(new CsrfToken('delete_account', $csrfToken))) {
+            throw new AccessDeniedException('Invalid CSRF token.');
+        }
+
+        $em->remove($user);
+        $em->flush();
+
+        $this->container->get('security.token_storage')->setToken(null);
+        $request->getSession()->invalidate();
+
+        return $this->redirectToRoute('app_home');
+    }
+
+    #[Route('/upcoming_events', name: 'app_upcoming_events', methods: ['GET'])]
+    public function upcomingEvents() : Response
+    {
+        return $this->render('user/upcoming_events.html.twig');
+    }
+
+    #[Route('/notifications', name: 'app_notifications', methods: ['GET'])]
+    public function notifications() : Response
+    {
+        return $this->render('user/notifications.html.twig');
+    }
+
+    #[Route('/passed_events', name: 'app_passed_events', methods: ['GET'])]
+    public function passedEvents() : Response
+    {
+        return $this->render('user/passed_events.html.twig');
     }
 
     // public function deleteAccount(Request $request, EntityManagerInterface $em) : Response

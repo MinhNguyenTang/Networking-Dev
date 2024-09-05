@@ -1,8 +1,0 @@
-{% block body %}
-    <form action="{{ path('app_edit_field', {'field': field}) }}" method="post">
-        {{ form_start(form) }}
-            {{ form_row(form.field) }}
-            <button type="submit">Enregistrer les modifications</button>
-        {{ form_end(form) }}
-    </form>
-{% endblock %}

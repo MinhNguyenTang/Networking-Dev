@@ -40,9 +40,15 @@ class ChangePasswordFormType extends AbstractType
                         new NotCompromisedPassword(),
                     ],
                     'label' => 'Veuillez saisir votre nouveau mot de passe',
+                    'label_attr' => [
+                        'class' => 'form-label mt-3'
+                    ],
                 ],
                 'second_options' => [
                     'label' => 'Veuillez confirmer votre nouveau mot de passe',
+                    'label_attr' => [
+                        'class' => 'form-label mt-3'
+                    ],
                 ],
                 'invalid_message' => 'The password fields must match.',
                 // Instead of being set onto the object directly,

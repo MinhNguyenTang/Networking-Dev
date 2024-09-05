@@ -5,9 +5,9 @@
 {% block body %}
 
     <div class="d-flex justify-content-center align-items-center custom-registration">
-        <div class="container">
-            {{ form_start(requestForm, { 'attr': { 'class': 'col-lg-4 mx-auto' } }) }}
-                <h5><strong>Réinitialiser votre mot de passe</strong></h5>
+        <div class="container col-lg-4 mx-auto">
+            {{ form_start(requestForm) }}
+                <h5><strong>Réinitialisater votre mot de passe</strong></h5>
 
                 {% for flash_error in app.flashes('reset_password_error') %}
                     <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
