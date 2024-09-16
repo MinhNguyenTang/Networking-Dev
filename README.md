@@ -36,6 +36,7 @@ Maintenant que le projet est sur votre Bureau, il faut encore installer des prog
 Pour ma part, j'utilise Wampserver (sur Windows) pour le développement des applications web. Ce ne sera peut-être pas votre cas, mais il existe des équivalents à Wampserver. Les voici : 
 
 Sur Linux : LAMP (Linux, Apache, MySQL, PHP/Python/Perl)
+
 Sur MacOS : MAMP (MacOS, Apache, MySQL, PHP/Python/Perl), XAMPP (également disponible sur Windows et Linux, mais n'utilise que Apache, MariaDB et PHP)
 
 À choisir en fonction de votre système d'exploitation de base.
@@ -44,7 +45,7 @@ Au cours de l'installation, veillez à bien suivre les instructions. Vous aurez 
 
 **Etape 3**
 
-Comme le projet est développé sous Symfony, je vous recommande d'installer Composer via le lien suivant : !(https://getcomposer.org/).
+Comme le projet est développé sous Symfony, je vous recommande d'installer Composer via le lien suivant : https://getcomposer.org/.
 
 Si tout se passe bien, taper les commandes depuis votre terminal :
 
@@ -54,3 +55,14 @@ composer -V
 ```
 
 Vous devriez pouvoir visualiser de nouvelles lignes de commandes et la version de Composer.
+
+Et pour finir, il vous restera à installer Symfony : https://symfony.com/download. Ouvrez votre IDE et le dépôt cloné.
+
+## Mise en garde
+
+Je tiens à souligner que Symfony sera très demandant sur la version de PHP. Si vous avez installé la version récente de PHP, il faudra que vous configuriez le fichier composer.json avec cette version et taper sur le terminale de votre IDE:
+
+```
+cd networking-app
+composer update
+```
