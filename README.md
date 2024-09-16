@@ -56,9 +56,36 @@ composer -V
 
 Vous devriez pouvoir visualiser de nouvelles lignes de commandes et la version de Composer.
 
-Et pour finir, il vous restera à installer Symfony : https://symfony.com/download. Ouvrez votre IDE et le dépôt cloné.
+Et pour finir, il vous restera à installer Symfony : https://symfony.com/download. Pareil que Composer, taper :
+
+```
+symfony
+symfony -V
+```
+
+## Lancement du projet
+
+Ouvrir votre IDE > Fichier > Ouvrir le dossier > networking-project.
+
+Ouvrir le terminal de votre IDE.
+
+Taper : 
+
+```
+symfony serve
+```
+
+**Accès à l'interface d'administration**
+
+Pour accéder à l'interface d'administration, connectez-vous sur l'application web avec les identifants suivants :
+
+E-mail : a.bertomier@outlook.fr, mot de passe : PasswordTest
+
+Sur l'url, ajouter /admin.
 
 ## Mise en garde
+
+**Version de PHP**
 
 Je tiens à souligner que Symfony sera très demandant sur la version de PHP. Si vous avez installé la version récente de PHP, il faudra que vous configuriez le fichier composer.json avec cette version 
 
@@ -70,3 +97,9 @@ Taper sur le terminal de votre IDE:
 cd networking-app
 composer update
 ```
+
+**Identifiants et base de données**
+
+Pour des raisons de sécurité, je vous prie de bien vouloir modifier les identifiants et de ne pas utiliser les miens sur le fichier .env qui se situe à la racine du projet.
+
+La base de données se situe également dans la racine de celui-ci (networking_app.sql). Assurez-vous de créer la base de données du même nom et de l'importer.
