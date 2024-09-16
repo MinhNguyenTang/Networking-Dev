@@ -89,7 +89,7 @@ Sur l'url, ajouter /admin.
 
 **Version de PHP**
 
-Je tiens à souligner que Symfony sera très demandant sur la version de PHP. Si vous avez installé la version récente de PHP, il faudra que vous configuriez le fichier composer.json avec cette version. 
+Je tiens à souligner que Symfony sera très demandant sur la version de PHP. Si vous avez installé la dernière version de PHP, il faudra que vous configuriez le fichier composer.json avec cette même version. 
 
 ![Configuration composer.json](<Capture d'écran 2024-09-16 120011.png>)
 
@@ -98,16 +98,17 @@ Taper sur le terminal de votre IDE:
 ```
 cd networking-app
 composer update
+composer update "symfony/*"
 ```
 
 **Identifiants et base de données**
 
-Pour des raisons de sécurité, je vous prie de bien vouloir modifier les identifiants et de ne pas utiliser les miens sur le fichier .env qui se situe à la racine du projet.
+Pour des raisons de sécurité, je vous prie de bien vouloir modifier les identifiants et de ne pas utiliser les miens sur le fichier .env qui se situe dans le sous-répertoire networking-app.
 
-La base de données se situe également dans la racine de celui-ci (networking_app.sql). Assurez-vous de créer la base de données avec le même nom et de l'importer.
+La base de données se situe dans la racine du projet (networking_app.sql). Assurez-vous de créer la base de données avec le même nom et de l'importer.
 
 **Mailer**
 
-De même pour les identifiants MAILER_DSN sur le fichier .env, il faudra vous créer un compte mailtrap et changer le SMTP que la plateforme vous aura fourni.
+Pour le MAILER_DSN sur le fichier .env, il faudra vous créer un compte mailtrap (https://mailtrap.io/) et changer les identifiants SMTP que la plateforme vous aura fourni.
 
 ![Set mailtrap credentials](<Capture d'écran 2024-09-16 170533.png>)
