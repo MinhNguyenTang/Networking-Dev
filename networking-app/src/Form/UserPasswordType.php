@@ -32,7 +32,7 @@ class UserPasswordType extends AbstractType
                     ],
                     'label' => 'Confirmer votre nouveau mot de passe',
                     'label_attr' => [
-                        'class' => 'form-label'
+                        'class' => 'form-label mt-3'
                     ],
                 ],
                 'invalid_message' => 'The password fields must match.',

@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -50,10 +53,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    /**
+     * @var Collection<int, Event>
+     */
+    #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'user')]
+    private Collection $events;
+
+    /**
+     * @var Collection<int, Event>
+     */
+    #[ORM\ManyToMany(targetEntity: Event::class, mappedBy: 'subscribedUsers')]
+    private Collection $event_subscription;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
+        $this->events = new ArrayCollection();
+        $this->event_subscription = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -201,5 +218,67 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Event>
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): static
+    {
+        if (!$this->events->contains($event)) {
+            $this->events->add($event);
+            $event->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): static
+    {
+        if ($this->events->removeElement($event)) {
+            // set the owning side to null (unless already changed)
+            if ($event->getUser() === $this) {
+                $event->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Event>
+     */
+    public function getEventSubscription(): Collection
+    {
+        return $this->event_subscription;
+    }
+
+    public function addEventSubscription(Event $eventSubscription): static
+    {
+        if (!$this->event_subscription->contains($eventSubscription)) {
+            $this->event_subscription->add($eventSubscription);
+            $eventSubscription->addSubscribedUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEventSubscription(Event $eventSubscription): static
+    {
+        if ($this->event_subscription->removeElement($eventSubscription)) {
+            $eventSubscription->removeSubscribedUser($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->fullName;
     }
 }

@@ -26,6 +26,7 @@ class ChangePasswordFormType extends AbstractType
                     ],
                 ],
                 'first_options' => [
+                    'toggle' => true,
                     'constraints' => [
                         new NotBlank([
                             'message' => 'Please enter a password',
@@ -45,6 +46,7 @@ class ChangePasswordFormType extends AbstractType
                     ],
                 ],
                 'second_options' => [
+                    'toggle' => true,
                     'label' => 'Veuillez confirmer votre nouveau mot de passe',
                     'label_attr' => [
                         'class' => 'form-label mt-3'

@@ -96,6 +96,10 @@ footer {
     border: 1px solid #555;
 }
 
+.form-select {
+    border: 1px solid #555;
+}
+
 .border-top {
     width: 92%;
     margin: auto;

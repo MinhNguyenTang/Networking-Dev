@@ -119,30 +119,41 @@ class UserController extends AbstractController
 
         $this->container->get('security.token_storage')->setToken(null);
         $request->getSession()->invalidate();
-
+        
         return $this->redirectToRoute('app_home');
     }
 
     #[Route('/upcoming_events', name: 'app_upcoming_events', methods: ['GET'])]
     public function upcomingEvents() : Response
     {
+        $user = $this->getUser();
+        if(!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
         return $this->render('user/upcoming_events.html.twig');
     }
 
     #[Route('/notifications', name: 'app_notifications', methods: ['GET'])]
     public function notifications() : Response
     {
+        $user = $this->getUser();
+        if(!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
         return $this->render('user/notifications.html.twig');
     }
 
     #[Route('/passed_events', name: 'app_passed_events', methods: ['GET'])]
     public function passedEvents() : Response
     {
+        $user = $this->getUser();
+        if(!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
         return $this->render('user/passed_events.html.twig');
     }
 
-    // public function deleteAccount(Request $request, EntityManagerInterface $em) : Response
-    // {
-    //     $user = $this->getUser();
-    // }
 }

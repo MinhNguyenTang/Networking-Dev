@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,9 +26,12 @@ class ContactType extends AbstractType
                     'placeholder' => 'Nom',
                 ],
                 'required' => true,
-                'label' => 'Nom*',
+                'label' => 'Nom *',
                 'label_attr' => [
                     'class' => 'form-label',
+                ],
+                'constraints' => [
+                    New NotBlank(),
                 ],
             ])
             ->add('firstname', TextType::class, [
@@ -35,9 +40,12 @@ class ContactType extends AbstractType
                     'placeholder' => 'Prénom',
                 ],
                 'required' => true,
-                'label' => 'Prénom*',
+                'label' => 'Prénom *',
                 'label_attr' => [
                     'class' => 'form-label',
+                ],
+                'constraints' => [
+                    New NotBlank(),
                 ],
             ])
             ->add('email', EmailType::class, [
@@ -46,9 +54,12 @@ class ContactType extends AbstractType
                     'placeholder' => 'E-mail professionnel',
                 ],
                 'required' => true,
-                'label' => 'E-mail professionnel*',
+                'label' => 'E-mail professionnel *',
                 'label_attr' => [
                     'class' => 'form-label',
+                ],
+                'constraints' => [
+                    New NotBlank(),
                 ],
             ])
             ->add('phoneNumber', TelType::class, [
@@ -57,9 +68,14 @@ class ContactType extends AbstractType
                     'placeholder' => 'Téléphone',
                 ],
                 'required' => true,
-                'label' => 'Téléphone*',
+                'label' => 'Téléphone *',
                 'label_attr' => [
                     'class' => 'form-label',
+                ],
+                'constraints' => [
+                    New Regex([
+                        'pattern' => '/^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/',
+                    ]),
                 ],
             ])
             ->add('company', TextType::class, [
@@ -68,7 +84,7 @@ class ContactType extends AbstractType
                     'placeholder' => 'Nom de l\'entreprise',
                 ],
                 'required' => true,
-                'label' => 'Nom de l\'entreprise*',
+                'label' => 'Nom de l\'entreprise *',
                 'label_attr' => [
                     'class' => 'form-label',
                 ],
@@ -79,14 +95,17 @@ class ContactType extends AbstractType
                     'placeholder' => 'Intitulé du poste',
                 ],
                 'required' => true,
-                'label' => 'Intitulé du poste*',
+                'label' => 'Intitulé du poste *',
                 'label_attr' => [
                     'class' => 'form-label',
                 ],
             ])
             ->add('companySize', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-select',
+                ],
                 'choices' => [
-                    '-- Sélectionnez la taille de l\'entreprise' => null,
+                    '-- Sélectionnez la taille de l\'entreprise --' => null,
                     '1 - 25' => '1 - 25',
                     '26 - 50' => '26 - 50',
                     '51 - 100' => '51 - 100',
@@ -100,8 +119,11 @@ class ContactType extends AbstractType
                 ],
             ])
             ->add('businessLine', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-select',
+                ],
                 'choices' => [
-                    '-- Sélectionnez le secteur d\'activité' => null,
+                    '-- Sélectionnez le secteur d\'activité --' => null,
                     'RH' => 'RH',
                     'Santé' => 'Santé',
                     'Education' => 'Education',
@@ -118,10 +140,10 @@ class ContactType extends AbstractType
             ->add('message', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'row' => 10,
+                    'rows' => 10,
                 ],
                 'required' => true,
-                'label' => 'Description de votre demande',
+                'label' => 'Description de votre demande *',
                 'label_attr' => [
                     'class' => 'form-label',
                 ],
