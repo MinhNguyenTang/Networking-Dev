@@ -141,6 +141,7 @@ class ContactType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'rows' => 10,
+                    'placeholder' => 'Votre message'
                 ],
                 'required' => true,
                 'label' => 'Description de votre demande *',

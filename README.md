@@ -27,7 +27,7 @@ cd Desktop
 git clone https://gitlab.com/hypnoteam/networking-project.git
 ```
 
-En appliquant ces commandes depuis le terminal, vous devriez normalement avoir un nouveau dossier dans votre Bureau.
+En appliquant ces commandes depuis le terminal, vous devriez normalement voir un nouveau dossier apparaître sur votre Bureau.
 
 **Etape 2**
 
@@ -47,7 +47,7 @@ Au cours de l'installation, veillez à bien suivre les instructions. Vous aurez 
 
 Comme le projet est développé sous Symfony, je vous recommande d'installer Composer via le lien suivant : https://getcomposer.org/.
 
-Si tout se passe bien, taper les commandes depuis votre terminal :
+Si tout se passe bien, taper les commandes suivantes depuis votre terminal :
 
 ```
 composer
@@ -80,7 +80,8 @@ symfony serve
 
 Pour accéder à l'interface d'administration, connectez-vous sur l'application web avec les identifants suivants :
 
-E-mail : a.bertomier@outlook.fr, mot de passe : PasswordTest
+E-mail : a.bertomier@outlook.fr
+Mot de passe : PasswordTest
 
 Sur l'url, ajouter /admin.
 
@@ -88,7 +89,7 @@ Sur l'url, ajouter /admin.
 
 **Version de PHP**
 
-Je tiens à souligner que Symfony sera très demandant sur la version de PHP. Si vous avez installé la version récente de PHP, il faudra que vous configuriez le fichier composer.json avec cette version 
+Je tiens à souligner que Symfony sera très demandant sur la version de PHP. Si vous avez installé la version récente de PHP, il faudra que vous configuriez le fichier composer.json avec cette version. 
 
 ![Configuration composer.json](<Capture d'écran 2024-09-16 120011.png>)
 
@@ -103,4 +104,10 @@ composer update
 
 Pour des raisons de sécurité, je vous prie de bien vouloir modifier les identifiants et de ne pas utiliser les miens sur le fichier .env qui se situe à la racine du projet.
 
-La base de données se situe également dans la racine de celui-ci (networking_app.sql). Assurez-vous de créer la base de données du même nom et de l'importer.
+La base de données se situe également dans la racine de celui-ci (networking_app.sql). Assurez-vous de créer la base de données avec le même nom et de l'importer.
+
+**Mailer**
+
+De même pour les identifiants MAILER_DSN sur le fichier .env, il faudra vous créer un compte mailtrap et changer le SMTP que la plateforme vous aura fourni.
+
+![Set mailtrap credentials](<Capture d'écran 2024-09-16 170533.png>)

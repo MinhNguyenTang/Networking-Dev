@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\EventRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home', methods: ['GET'])]
-    public function index(): Response
+    public function index(EventRepository $eventRepository): Response
     {
-        
-        return $this->render('home/index.html.twig');
+        $lastEvent = $eventRepository->findOneBy([], ['id' => 'desc']);
+        $events = $eventRepository->findBy([], ['id' => 'desc'], 4);
+        return $this->render('home/index.html.twig', compact('lastEvent', 'events'));
     }
 
     #[Route('/who-are-we', name: 'app_who', methods: ['GET'])]

@@ -60,9 +60,11 @@ class UserCrudController extends AbstractCrudController
             TextField::new('fullName')
                 ->setFormType(TextType::class),
             TextField::new('phoneNumber')
-                ->setFormType(TelType::class),
+                ->setFormType(TelType::class)
+                ->setRequired(isRequired: false),
             EmailField::new('email')
-                ->setFormType(EmailType::class),
+                ->setFormType(EmailType::class)
+                ->setRequired(isRequired: false),
             FormField::addFieldset('Security')
                 ->hideOnDetail()
                 ->addCssClass('shadow-sm border p-3 rounded mb-4'),
@@ -80,15 +82,19 @@ class UserCrudController extends AbstractCrudController
                     'Administrator' => 'ROLE_ADMIN'
                 ])
                 ->allowMultipleChoices()
-                ->setColumns(6),
+                ->setColumns(6)
+                ->setRequired(isRequired: false),
             FormField::addFieldset('Business information')
-                ->addCssClass('shadow-sm border p-3 rounded mb-4'),
+                ->addCssClass('shadow-sm border p-3 rounded mb-4')
+                ->setRequired(isRequired: false),
             TextField::new('company')
                 ->setFormType(TextType::class)
-                ->hideOnIndex(),
+                ->hideOnIndex()
+                ->setRequired(isRequired: false),
             TextField::new('occupation')
                 ->setFormType(TextType::class)
-                ->hideOnIndex(),
+                ->hideOnIndex()
+                ->setRequired(isRequired: false),
             DateTimeField::new('createdAt')->onlyOnIndex(),
         ];
     }
