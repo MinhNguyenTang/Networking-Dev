@@ -72,6 +72,7 @@ Ouvrir le terminal de votre IDE.
 Taper : 
 
 ```
+cd networking-app
 symfony serve
 ```
 
