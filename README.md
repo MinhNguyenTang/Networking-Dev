@@ -16,7 +16,7 @@ gestion des versions.
 
 Pour que vous ayez le projet dans votre local, veuillez vous rendre sur la page du dépôt que je vous ai partagé, cliquer sur le bouton Clone et sélectionner le bouton pour copier le lien sous le label Clone with HTTPS.
 
-![](assets/img/reporitory.png)
+![Ceci est mon dépôt Gitlab](networking-project/networking-app/assets/img/reporitory.png)
 
 Ensuite, veuillez saisir la commande suivante dans votre terminal : 
 
