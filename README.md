@@ -60,7 +60,11 @@ Et pour finir, il vous restera à installer Symfony : https://symfony.com/downlo
 
 ## Mise en garde
 
-Je tiens à souligner que Symfony sera très demandant sur la version de PHP. Si vous avez installé la version récente de PHP, il faudra que vous configuriez le fichier composer.json avec cette version et taper sur le terminale de votre IDE:
+Je tiens à souligner que Symfony sera très demandant sur la version de PHP. Si vous avez installé la version récente de PHP, il faudra que vous configuriez le fichier composer.json avec cette version 
+
+![Configuration composer.json](<Capture d'écran 2024-09-16 120011.png>)
+
+Taper sur le terminal de votre IDE:
 
 ```
 cd networking-app
