@@ -25,13 +25,13 @@
             <li class="nav-item dropdown ">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.fullName }}</a>
               <div class="dropdown-menu dropdown-menu-lg-end shadow p-4">
-                <a class="dropdown-item" href="{{ path('app_profile') }}">Informations personnelles</a>
-                <a class="dropdown-item" href="{{ path('app_upcoming_events') }}">Evénements à venir</a>
-                <a class="dropdown-item" href="{{ path('app_notifications') }}">Notifications</a>
-                <a class="dropdown-item" href="{{ path('app_passed_events') }}">Historique</a>
+                <a class="dropdown-item" href="{{ path('app_profile') }}">{{ ux_icon('iconoir:profile-circle') }} Informations personnelles</a>
+                <a class="dropdown-item" href="{{ path('app_upcoming_events') }}">{{ ux_icon('bx:bookmark') }} Evénements à venir</a>
+                <a class="dropdown-item" href="{{ path('app_notifications') }}">{{ ux_icon('bx:bell') }} Notifications</a>
+                <a class="dropdown-item" href="{{ path('app_passed_events') }}">{{ ux_icon('bx:history') }} Historique</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Aide {{ ux_icon('ic:sharp-help-outline') }}</a>
-                <a class="dropdown-item" href="{{ path('app_logout', { 'token': csrf_token('logout') }) }}">Déconnexion {{ ux_icon('material-symbols:logout-sharp') }}</a>
+                <a class="dropdown-item" href="#">{{ ux_icon('ic:sharp-help-outline') }} Aide</a>
+                <a class="dropdown-item" href="{{ path('app_logout', { 'token': csrf_token('logout') }) }}">{{ ux_icon('bx:power-off') }} Déconnexion</a>
               </div>
             </li>
           </ul>

@@ -127,7 +127,7 @@ class UserController extends AbstractController
     public function upcomingEvents() : Response
     {
         $user = $this->getUser();
-        if(!$user) {
+        if (!$user) {
             return $this->redirectToRoute('app_login');
         }
 
@@ -138,7 +138,7 @@ class UserController extends AbstractController
     public function notifications() : Response
     {
         $user = $this->getUser();
-        if(!$user) {
+        if (!$user) {
             return $this->redirectToRoute('app_login');
         }
 
@@ -149,7 +149,7 @@ class UserController extends AbstractController
     public function passedEvents() : Response
     {
         $user = $this->getUser();
-        if(!$user) {
+        if (!$user) {
             return $this->redirectToRoute('app_login');
         }
 
