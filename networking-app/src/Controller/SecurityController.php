@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationType;
+use Flasher\Prime\FlasherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +25,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/login', name: 'app_login', methods: ['GET', 'POST'])]
-    public function index(AuthenticationUtils $authenticationUtils, Security $security): Response
+    public function index(AuthenticationUtils $authenticationUtils, Security $security, Request $request, FlasherInterface $flasher): Response
     {
         if ($security->getUser()) {
             return $this->redirectToRoute('app_home');

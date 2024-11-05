@@ -10,6 +10,7 @@ use App\Form\UserPasswordType;
 use App\Form\UserOccupationType;
 use App\Form\UserPhoneNumberType;
 use App\Repository\UserRepository;
+use Flasher\Prime\FlasherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,12 +77,15 @@ class UserController extends AbstractController
                 if ($field === 'password' && $form->get('password')->getData()) {
                     $hashed = $hasher->hashPassword($user, $user->getPassword());
                     $user->setPassword($hashed);
+
+                    $dateUpdate = new \DateTimeImmutable();
+                    $user->setUpdatedAt($dateUpdate);
                 }
-    
-                $dateUpdate = new \DateTimeImmutable();
-                $user->setUpdatedAt($dateUpdate);
-    
                 $em->flush();
+                $this->addFlash(
+                    'success',
+                    ucfirst($field) . ' updated !'
+                );
     
                 return $this->redirectToRoute('app_profile');
             }

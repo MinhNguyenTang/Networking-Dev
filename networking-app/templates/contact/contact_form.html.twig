@@ -5,13 +5,6 @@
 {% block body %}
 
     <div class="d-flex background-color-contact justify-content-center align-items-center">
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-dismissible alert-success mt-4">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                {{ message }}
-            </div>
-        {% endfor %}
-        
         <section class="content-section">
             <h5 class="custom-title align-items-left">Lorem ipsum</h5>
 
@@ -32,6 +25,13 @@
 
     <div class="container d-flex justify-content-center align-items-center">
         <section class="custom-contact-form mt-5">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-dismissible alert-success mt-4">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+            
             <h5 class="align-items-left"><strong>Contactez-nous</strong></h5>
                 <div class="col-md-12 mt-4">
                     {{ form_start(contact_form) }}

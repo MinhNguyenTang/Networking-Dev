@@ -11,7 +11,7 @@
 
 .background-color-home-bis {
     background-color: #000066;
-    height: 75vh; 
+    height: 90vh; 
     z-index: 1;
     position: relative; 
     background-size: cover; 
@@ -111,6 +111,10 @@ footer {
 
 input {
     display: inline-block;
+}
+
+.padding-menu {
+    padding: 54px;
 }
 
 .upper-footer {

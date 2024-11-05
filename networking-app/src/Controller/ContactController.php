@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use Flasher\Prime\FlasherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,8 +20,15 @@ class ContactController extends AbstractController
     ): Response
     {
         $contact = new Contact();
-        $form = $this->createForm(ContactType::class, $contact);
 
+        if ($this->getUser()) {
+            $contact->setEmail($this->getUser()->getEmail())
+                    ->setCompany($this->getUser()->getCompany())
+                    ->setPhoneNumber($this->getUser()->getPhoneNumber())
+                    ->setOccupation($this->getUser()->getOccupation());
+        }
+
+        $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -31,8 +39,7 @@ class ContactController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Votre message a été envoyé !'
-            );
+                'Votre message a bien été envoyé !');
 
             return $this->redirectToRoute('app_contact');
         }
