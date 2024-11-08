@@ -52,6 +52,29 @@
             </div>
         </div>
     </aside>
+
+    <div class="col-md-10 ms-sm-auto col-lg-10 px-4">
+      <div class="user-profile-container">
+        <div class="d-flex justify-content-between flex-wrap">
+          {% for subscribedEvent in subscribedEvents %}
+          <div class="card shadow-lg rounded border-0" style="max-width: 25rem;">
+            <div class="card-header bg-white border-0">
+              <h5 class="float-start mt-3"><strong>{{ subscribedEvent.title }}</strong></h5>
+              <p class="float-end mt-3">{{ subscribedEvent.company }}</p>
+            </div>
+            <div class="card-body">
+              <div class="card-text">
+                  <p>{{ subscribedEvent.description|raw }}</p>
+              </div>
+            </div>
+            <div class="card-footer bg-white border-0">
+              <p>{{ subscribedEvent.date|date("d/m/Y") }} | {{ subscribedEvent.time|date("H:i") }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
 </main>
 
 {% endblock %}

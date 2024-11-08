@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Ramsey\Uuid\Uuid;
 use App\Repository\EventRepository;
 use Flasher\Prime\FlasherInterface;
 use Symfony\Component\HttpFoundation\Response;

@@ -10,6 +10,7 @@ use App\Form\UserPasswordType;
 use App\Form\UserOccupationType;
 use App\Form\UserPhoneNumberType;
 use App\Repository\UserRepository;
+use App\Repository\EventRepository;
 use Flasher\Prime\FlasherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -128,14 +129,14 @@ class UserController extends AbstractController
     }
 
     #[Route('/upcoming_events', name: 'app_upcoming_events', methods: ['GET'])]
-    public function upcomingEvents() : Response
+    public function upcomingEvents(EventRepository $eventRepository) : Response
     {
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-
-        return $this->render('user/upcoming_events.html.twig');
+        $subscribedEvents = $user->getEventSubscription();
+        return $this->render('user/upcoming_events.html.twig', compact('subscribedEvents'));
     }
 
     #[Route('/notifications', name: 'app_notifications', methods: ['GET'])]

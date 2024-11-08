@@ -37,15 +37,15 @@
         <div class="container">
             <h2 class="custom-text"><strong>Pour vous</strong></h2>
             <div class="card">
-                <div class="card-header border-0">
+                <div class="card-header bg-white border-0">
                     <h5 class="float-start mt-3"><strong>{{ lastEvent.title }}</strong></h5>
                     <p class="float-end mt-3">{{ lastEvent.company }}</p>
                 </div>
                 <div class="card-body">
                   <p class="card-text">{{ lastEvent.description|raw }}</p>
                 </div>
-                <div class="card-footer border-0">
-                    <a href="#" class="btn btn-primary">S'inscrire</a>
+                <div class="card-footer bg-white border-0">
+                    <p>{{ lastEvent.date|date("d/m/Y") }} | {{ lastEvent.time|date("H:i") }}</p>
                 </div>
               </div>
         </div>
@@ -57,8 +57,8 @@
 
         <div class="d-flex justify-content-around flex-wrap">
             {% for event in events %}
-                <div class="card shadow-lg mt-5" style="max-width: 25rem;">
-                    <div class="card-header border-0">
+                <div class="card shadow-lg  border-0 mt-5" style="max-width: 25rem;">
+                    <div class="card-header bg-white border-0">
                         <h5 class="float-start mt-3"><strong>{{ event.title }}</strong></h5>
                         <p class="float-end mt-3">{{ event.company }}</p>
                     </div>
@@ -67,10 +67,16 @@
                             <p>{{ event.description|raw }}</p>
                         </div>
                     </div>
-                    <div class="card-footer border-0">
+                    <div class="card-footer bg-white border-0">
                         <p>{{ event.date|date("d/m/Y") }} | {{ event.time|date("H:i") }}</p>
-
-                        <a href="#" class="btn btn-primary">S'inscrire</a>
+                        {% if app.user.getEventSubscription.contains(event) %}
+                           <a href="#" class="btn btn-primary disabled">Vous vous êtes déjà inscrit(e)</a> 
+                        {% else %}
+                            <form action="{{ path('app_subscribe_event') }}" method="post">
+                                <input type="hidden" name="event_id" value="{{ event.id }}">
+                                <button type="submit" class="btn btn-primary">S'inscrire</button>
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
