@@ -146,9 +146,4 @@ class Event
 
         return $this;
     }
-
-    // public function getTotalSubscribed(): int 
-    // {
-    //     return $this->subscribedUsers->count();
-    // }
 }

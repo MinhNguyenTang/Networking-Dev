@@ -151,14 +151,14 @@ class UserController extends AbstractController
     }
 
     #[Route('/passed_events', name: 'app_passed_events', methods: ['GET'])]
-    public function passedEvents() : Response
+    public function passedEvents(EventRepository $eventRepository) : Response
     {
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-
-        return $this->render('user/passed_events.html.twig');
+        $pastEvents = $eventRepository->findPastEvents();
+        return $this->render('user/passed_events.html.twig', compact('pastEvents'));
     }
 
 }

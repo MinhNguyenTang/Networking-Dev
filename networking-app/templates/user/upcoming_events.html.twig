@@ -56,7 +56,7 @@
     <div class="col-md-10 ms-sm-auto col-lg-10 px-4">
       <div class="user-profile-container">
         <div class="d-flex justify-content-between flex-wrap">
-          {% for subscribedEvent in subscribedEvents %}
+          {% for subscribedEvent in subscribedEvents|sort((a, b) => b.date <=> a.date) %}
           <div class="card shadow-lg rounded border-0" style="max-width: 25rem;">
             <div class="card-header bg-white border-0">
               <h5 class="float-start mt-3"><strong>{{ subscribedEvent.title }}</strong></h5>

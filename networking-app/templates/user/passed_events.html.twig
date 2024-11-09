@@ -55,8 +55,27 @@
 
     <div class="col-md-10 ms-sm-auto col-lg-10 px-4">
       <div class="user-profile-container">
-        <div class="text-center mt-5">
-          <p>No event</p>
+        <div class="d-flex justify-content-between flex-wrap">
+          {% for pastEvent in pastEvents %}
+            {% set eventDate = pastEvent.date|date("d/m/Y") %}
+            {% set currentDate = 'now'|date("d/m/Y") %}
+            {% if eventDate > currentDate %}
+            <div class="card shadow-lg rounded border-0" style="max-width: 25rem;">
+              <div class="card-header bg-white border-0">
+                <h5 class="float-start mt-3"><strong>{{ pastEvent.title }}</strong></h5>
+                <p class="float-end mt-3">{{ pastEvent.company }}</p>
+              </div>
+              <div class="card-body">
+                <div class="card-text">
+                    <p>{{ pastEvent.description|raw }}</p>
+                </div>
+              </div>
+              <div class="card-footer bg-white border-0">
+                <p>{{ pastEvent.date|date("d/m/Y") }} | {{ pastEvent.time|date("H:i") }}</p>
+              </div>
+            </div>
+            {% endif %}
+          {% endfor %}
         </div>
       </div>
     </div>
