@@ -21,20 +21,16 @@
 
 .background-color-contact {
     background-color: #000066;
-    height: 80vh;
+    height: 100vh;
     position: relative;
     background-repeat: no-repeat; 
     background-position: center;
 }
 
 body {
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
     background-color: whitesmoke;
 }
-
-/* .custom-navbar {
-    height: 120px;
-} */
 
 .contact-margin-top {
     padding-top: 2.09rem;
@@ -80,6 +76,10 @@ body {
     color: white;
 }
 
+.customized-sidemenu {
+    border: 1px solid lightgray;
+}
+
 .img-home {
     image-resolution: auto;
     image-rendering: auto;
@@ -90,6 +90,14 @@ body {
 footer {
     min-height: 390px;
     /* background-color: #e5e5e5; */
+}
+
+.framed-schedule {
+    border: 1px solid #000;
+    border-width: 0.5px;
+    /* background-color: gainsboro; */
+    padding: 8px;
+    width: 156px;
 }
 
 .form-control {
@@ -126,9 +134,13 @@ input {
 
 } */
 
+.spaced-cards {
+    margin-bottom: 7%;
+}
+
 .user-profile-container { 
     margin: auto;
-    padding-top: 5%; 
+    padding-top: 3.4rem; 
     max-width: 800px; 
     width: 95%; 
     font: 17px/1.5 sans-serif; 
@@ -171,18 +183,5 @@ input {
 /* On Chrome, Edge, Opera and Safari */
 ::-webkit-scrollbar {
     width: 9px;
-}
-
-::-webkit-scrollbar-corner {
-    background: grey;
-}
-
-::-webkit-scrollbar-track {
-    background: lightgrey;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: grey;
-    border-radius: 20px;
-    border: 3px solid grey;
+    display: none;
 }

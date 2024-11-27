@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Event;
 use App\Form\UserEmailType;
 use App\Form\UserCompanyType;
 use App\Form\UserFullNameType;
@@ -13,6 +14,7 @@ use App\Repository\UserRepository;
 use App\Repository\EventRepository;
 use Flasher\Prime\FlasherInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -135,7 +137,10 @@ class UserController extends AbstractController
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-        $subscribedEvents = $user->getEventSubscription();
+        $currentDate = new \DateTime();
+        $subscribedEvents = $user->getEventSubscription()->filter(function (Event $event) use ($currentDate) {
+            return $event->getDate() > $currentDate;
+        });
         return $this->render('user/upcoming_events.html.twig', compact('subscribedEvents'));
     }
 
@@ -151,14 +156,22 @@ class UserController extends AbstractController
     }
 
     #[Route('/passed_events', name: 'app_passed_events', methods: ['GET'])]
-    public function passedEvents(EventRepository $eventRepository) : Response
+    public function passedEvents(
+        EventRepository $eventRepository,
+        PaginatorInterface $paginator,
+        Request $request) : Response
     {
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
         $pastEvents = $eventRepository->findPastEvents();
-        return $this->render('user/passed_events.html.twig', compact('pastEvents'));
+        $paginatedPastEvents = $paginator->paginate(
+            $pastEvents,
+            $request->query->getInt('page', 1),
+            6,
+        );
+        return $this->render('user/passed_events.html.twig', compact('paginatedPastEvents'));
     }
 
 }

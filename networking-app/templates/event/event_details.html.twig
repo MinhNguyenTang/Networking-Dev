@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ eventDetails.title }} {% endblock %}
+
+{% block body %}
+
+<main class="d-flex">
+    <div class="user-profile-container">
+        <h5><strong>{{ eventDetails.title }}</strong></h5>
+        <p>{{ eventDetails.description|raw }}</p>
+        <p>{{ eventDetails.date|date("d/m/Y") }} | {{ eventDetails.time|date("H:i") }}</p>
+        <p>Entreprise : {{ eventDetails.company }}</p>
+        <p>Ajouté par : {{ eventDetails.user.fullname }}</p>
+        <p>Nombre d'inscrits : {{ eventDetails.subscribedUsers|length }}</p>
+    </div>
+</main>
+
+{% endblock %}

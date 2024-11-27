@@ -15,7 +15,7 @@ class HomeController extends AbstractController
     public function index(EventRepository $eventRepository): Response
     {
         $lastEvent = $eventRepository->findOneBy([], ['id' => 'desc']);
-        $events = $eventRepository->findBy([], ['id' => 'desc'], 4);
+        $events = $eventRepository->findBy([], ['id' => 'desc'], 6);
         return $this->render('home/index.html.twig', compact('lastEvent', 'events'));
     }
 

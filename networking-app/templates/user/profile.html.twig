@@ -18,7 +18,7 @@
 <main class="d-flex">
     <aside class="col-md-6 col-lg-2 d-flex flex-column">
         <div class="padding-menu">
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light shadow p-3 mb-5 bg-white rounded" style="width: 280px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 p-3 mb-5 bg-white customized-sidemenu rounded" style="width: 280px;">
                 <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                   <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
                   <span class="fs-4">Sidebar</span>
@@ -73,7 +73,7 @@
                 </div>
             {% endfor %}
         
-            <div class="card border-0 shadow p-3 mb-5 bg-white rounded">
+            <div class="card  p-3 mb-5 bg-white rounded">
               <div class="card-header bg-white border-0">
                     <h5 class="mt-3 mb-3"><strong>Informations personnelles</strong></h5>
               </div>
@@ -257,20 +257,21 @@
               </ul>
             </div>
         
-            <div class="card border-0 shadow p-3 mb-5 bg-white rounded mt-4">
+            <div class="card p-3 mb-5 bg-white mt-4">
                 <div class="card-header bg-white border-0">
                   <h5 class="mt-3 mb-3"><strong>Supprimer mon compte</strong></h5>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <p class="mt-3">
-                        En supprimant votre compte, toutes vos données à caractère personnelle seront
-                        immédiatement effacées de notre base de données.
-                    </p>
+                <div class="card-body">
+                    <div class="card-text">
+                        <p>
+                            En supprimant votre compte, toutes vos données à caractère personnelle seront
+                            immédiatement effacées de notre base de données.
+                        </p>
+                    </div>
+                </div>
+                <div class="card-footer bg-white border-0">
                     <a href="" role="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Supprimer</a>
-                  </li>
-                </ul>
-        
+                </div>
                 
                 <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">

@@ -7,7 +7,7 @@
 <main class="d-flex">
     <aside class="col-md-6 col-lg-2 d-flex flex-column">
         <div class="padding-menu">
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light shadow p-3 mb-5 bg-white rounded" style="width: 280px;">
+            <div class="d-flex flex-column flex-shrink-0 p-3 p-3 mb-5 bg-white customized-sidemenu rounded" style="width: 280px;">
                 <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                     <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
                     <span class="fs-4">Sidebar</span>
@@ -56,8 +56,11 @@
     <div class="col-md-10 ms-sm-auto col-lg-10 px-4">
       <div class="user-profile-container">
         <div class="d-flex justify-content-between flex-wrap">
+          {% if subscribedEvents is empty %}
+          <p>Vous ne vous êtes inscrit(e) à aucun événement.</p>
+          {% else %}
           {% for subscribedEvent in subscribedEvents|sort((a, b) => b.date <=> a.date) %}
-          <div class="card shadow-lg rounded border-0" style="max-width: 25rem;">
+          <div class="card spaced-cards" style="max-width: 23rem;">
             <div class="card-header bg-white border-0">
               <h5 class="float-start mt-3"><strong>{{ subscribedEvent.title }}</strong></h5>
               <p class="float-end mt-3">{{ subscribedEvent.company }}</p>
@@ -72,6 +75,7 @@
             </div>
           </div>
           {% endfor %}
+          {% endif %}
         </div>
       </div>
     </div>

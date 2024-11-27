@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -30,5 +31,30 @@ class EventController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('app_home'); 
+    }
+    #[Route('/all_events', name: 'app_all_events', methods: ['GET'])]
+    public function allEvents(
+        EventRepository $eventRepository, 
+        PaginatorInterface $paginator,
+        Request $request): Response
+    {
+        $allEvents = $eventRepository->findBy([], ['date' => 'desc']);
+        $paginatedEvents = $paginator->paginate(
+            $allEvents,
+            $request->query->getInt('page', 1),
+            5
+        );
+        return $this->render('event/event_list.html.twig', compact('paginatedEvents'));
+    }
+
+    #[Route('/event/?{id}', name: 'app_event_details', methods: ['GET'])]
+    public function eventDetails(Event $eventDetails): Response
+    {
+        // $user = $this->getUser();
+        // if (!$user) {
+        //     return $this->redirectToRoute('app_login');
+        // }
+
+        return $this->render('event/event_details.html.twig', compact('eventDetails'));
     }
 }

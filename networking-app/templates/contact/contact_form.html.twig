@@ -36,7 +36,7 @@
                 <div class="col-md-12 mt-4">
                     {{ form_start(contact_form) }}
                         <div class="row mt-4">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6"> 
                                 {{ form_label(contact_form.name) }}
                                 {{ form_widget(contact_form.name) }}
                             </div>
@@ -89,6 +89,15 @@
                                 {{ form_label(contact_form.message) }}
                                 {{ form_widget(contact_form.message) }}
                             </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <p class="small">
+                                Les données collectées sur ce formulaire sont destinées à [Nom de l'entreprise] afin de répondre à votre demande.
+                                Les informations recueillies sur ce formulaire avec un astérisque sont indispensables à son traitement.
+                                Vous disposez d’un droit d’accès, de rectification, d’opposition, de limitation, de suppression et de portabilité sur les données personnelles vous concernant. Vous pouvez exercer vos droits en vous adressant à notre Délégué à la Protection des Données à l’adresse rgpd@novaway.fr
+                                Pour plus d’informations sur le traitement de vos données personnelles, rendez-vous sur notre <a href="{{ path('app_privacy')}}">politique de confidentialité</a>.
+                            </p>
                         </div>
 
                         <div class="row">
