@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Event;
 use App\Controller\Admin\UserCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -12,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -48,16 +50,32 @@ class EventCrudController extends AbstractCrudController
         return [
             FormField::addFieldset()
                 ->addCssClass('shadow-sm border p-3 rounded mb-4'),
+
             IdField::new('id')->hideOnForm(),
+
             TextField::new('title'),
+
+            ImageField::new('file')
+                ->setBasePath('uploads/events')
+                ->onlyOnIndex(),
+
+            TextField::new('imageFile')
+                ->setFormType(VichImageType::class)
+                ->onlyWhenCreating(),
+
             TextField::new('company'),
+
             DateField::new('date'),
+
             TimeField::new('time')
                 ->setTimeZone('Europe/Paris'),
+
             TextEditorField::new('description')
                 ->setNumOfRows(7),
+
             AssociationField::new('user', 'Added by')
                 ->hideOnForm(),
+
             AssociationField::new('subscribedUsers', 'Subscribed users')
                 ->onlyOnIndex(),
         ];

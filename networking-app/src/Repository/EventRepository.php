@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use DateTime;
+use App\Entity\User;
 use App\Entity\Event;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -42,12 +44,24 @@ class EventRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function findPastEvents()
+    public function findPastEvents(User $user)
     {
         return $this->createQueryBuilder('e')
             ->where('e.date < :now')
+            ->andWhere(':user MEMBER OF e.subscribedUsers')
             ->setParameter('now', new DateTime())
+            ->setParameter('user', $user)
             ->orderBy('e.date', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findCompanyEvents($company)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.company = :company')
+            ->setParameter('company', $company)
+            ->orderBy('e.date', 'desc')
             ->getQuery()
             ->getResult();
     }

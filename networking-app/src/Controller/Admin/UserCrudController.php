@@ -54,27 +54,35 @@ class UserCrudController extends AbstractCrudController
         return [
             FormField::addFieldset('User details')
                 ->addCssClass('shadow-sm border p-3 rounded mb-4'),
+
             IdField::new('id')
                 ->hideOnForm()
                 ->hideOnDetail(),
+
             TextField::new('fullName')
                 ->setFormType(TextType::class),
+
             TextField::new('phoneNumber')
                 ->setFormType(TelType::class)
                 ->setRequired(isRequired: false),
+
             EmailField::new('email')
                 ->setFormType(EmailType::class)
                 ->setRequired(isRequired: false),
+
             FormField::addFieldset('Security')
                 ->hideOnDetail()
                 ->addCssClass('shadow-sm border p-3 rounded mb-4'),
+
             TextField::new('password')
                 ->setFormType(PasswordType::class)
                 ->hideOnIndex()
                 ->hideOnDetail()
                 ->setRequired(isRequired: false),
+
             FormField::addFieldset('User role')
                 ->addCssClass('shadow-sm border p-3 rounded mb-4'),
+
             ChoiceField::new('roles')
                 ->setChoices([
                     'No role selected' => '',
@@ -84,17 +92,21 @@ class UserCrudController extends AbstractCrudController
                 ->allowMultipleChoices()
                 ->setColumns(6)
                 ->setRequired(isRequired: false),
+
             FormField::addFieldset('Business information')
                 ->addCssClass('shadow-sm border p-3 rounded mb-4')
                 ->setRequired(isRequired: false),
+
             TextField::new('company')
                 ->setFormType(TextType::class)
                 ->hideOnIndex()
                 ->setRequired(isRequired: false),
+
             TextField::new('occupation')
                 ->setFormType(TextType::class)
                 ->hideOnIndex()
                 ->setRequired(isRequired: false),
+                
             DateTimeField::new('createdAt')->onlyOnIndex(),
         ];
     }

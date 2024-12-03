@@ -157,15 +157,16 @@ class UserController extends AbstractController
 
     #[Route('/passed_events', name: 'app_passed_events', methods: ['GET'])]
     public function passedEvents(
+        UserRepository $userRepository,
         EventRepository $eventRepository,
         PaginatorInterface $paginator,
         Request $request) : Response
     {
-        $user = $this->getUser();
+        $user = $userRepository->find($this->getUser());
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
-        $pastEvents = $eventRepository->findPastEvents();
+        $pastEvents = $eventRepository->findPastEvents($user);
         $paginatedPastEvents = $paginator->paginate(
             $pastEvents,
             $request->query->getInt('page', 1),

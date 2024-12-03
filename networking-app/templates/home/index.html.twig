@@ -60,24 +60,34 @@
 
     <div class="d-flex justify-content-around gapped flex-wrap">
         {% for event in events %}
-            <div class="card mt-5" style="max-width: 23rem;">
+            <div class="card mt-3" style="max-width: 26rem;">
                 <div class="card-header bg-white border-0">
-                    <h5 class="float-start mt-3"><a href="{{ path('app_event_details', {'id': event.id}) }}" style="text-decoration: none;"><strong>{{ event.title }}</strong></a></h5>
-                    <p class="float-end mt-3">{{ event.company }}</p>
+                    {% if event.file is empty %}
+                        <img class="img-fluid" src="{{ asset('uploads/events/6491439.jpg') }}" alt="{{ event.title }}" style="width: 100%; height: 200px; object-fit: cover">
+                    {% else %}
+                        <img class="img-fluid" src="{{ asset('uploads/events/' ~ event.file) }}" alt="{{ event.title }}" style="width: 100%; height: 200px; object-fit: cover">
+                    {% endif %}
                 </div>
                 <div class="card-body">
                     <div class="card-text">
-                        <p>{{ event.description|raw }}</p>
+                        <h5><a href="{{ path('app_event_details', {'id': event.id}) }}" style="text-decoration: none;"><strong>{{ event.title }}</strong></a></h5>
                     </div>
                 </div>
                 <div class="card-footer bg-white border-0">
-                    <p class="text-center framed-schedule rounded">{{ event.date|date("d/m/Y") }} | {{ event.time|date("H:i") }}</p>
+                    <p><strong>{{ event.company }}</strong></p>
+                    <p class="float-start text-center framed-schedule rounded">{{ event.date|date("d/m/Y") }} | {{ event.time|date("H:i") }}</p>
+                    <p class="float-end">Inscrits : {{ event.subscribedUsers|length }}</p>
                     {% if app.user.getEventSubscription.contains(event) %}
-                       <p>Vous vous êtes déjà inscrit(e)</p> 
+                       <p style="margin-top: 5rem;">Vous vous êtes déjà inscrit(e)</p> 
                     {% else %}
                         <form action="{{ path('app_subscribe_event') }}" method="post">
                             <input type="hidden" name="event_id" value="{{ event.id }}">
-                            <button type="submit" class="btn btn-primary">S'inscrire</button>
+                            {% set today = date('now') %}
+                            {% if event.date < today %}
+                                <button type="submit" class="btn btn-primary disabled" style="margin-top: 5rem;">S'inscrire</button>
+                            {% else %}
+                                <button type="submit" class="btn btn-primary" style="margin-right: 10rem;">S'inscrire</button>
+                            {% endif %}         
                         </form>
                     {% endif %}
                 </div>
@@ -85,14 +95,14 @@
         {% endfor %}
     </div>
 
-    <div class="mt-5" style="margin-left: 3rem; margin-right: 3rem;">
+    {# <div class="mt-5" style="margin-left: 3rem; margin-right: 3rem;">
         <h5><strong>Ils partagent leur expertise</strong></h5>
         <div class="card mt-3">
             <div class="card-body">
                 Hello!
             </div>
         </div>
-    </div>
+    </div> #}
     {% endif %} 
     
 {% endblock %}

@@ -48,13 +48,12 @@ class EventController extends AbstractController
     }
 
     #[Route('/event/?{id}', name: 'app_event_details', methods: ['GET'])]
-    public function eventDetails(Event $eventDetails): Response
+    public function eventDetails(
+        EventRepository $eventRepository,
+        Event $eventDetails
+        ): Response
     {
-        // $user = $this->getUser();
-        // if (!$user) {
-        //     return $this->redirectToRoute('app_login');
-        // }
-
-        return $this->render('event/event_details.html.twig', compact('eventDetails'));
+        $lastestEvents = $eventRepository->findBy([], ['date' => 'desc'], 3);
+        return $this->render('event/event_details.html.twig', compact('eventDetails', 'lastestEvents'));
     }
 }

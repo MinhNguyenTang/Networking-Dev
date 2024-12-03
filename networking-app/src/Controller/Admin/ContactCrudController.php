@@ -46,21 +46,34 @@ class ContactCrudController extends AbstractCrudController
         return [
             FormField::addFieldset('User details')
                 ->addCssClass('shadow-sm border p-3 rounded mb-4'),
+
             IdField::new('id')->hideOnDetail(),
+
             TextField::new('Name'),
+
             TextField::new('Firstname'),
+
             EmailField::new('email'),
+
             TextField::new('phoneNumber')
                 ->setFormType(TelType::class),
+
             FormField::addFieldset('Business information')
                 ->addCssClass('shadow-sm border p-3 rounded mb-4'),
+
             TextField::new('company')->onlyOnDetail(),
+
             TextField::new('occupation')->onlyOnDetail(),
+
             TextField::new('company_size')->onlyOnDetail(),
+
             TextField::new('business_line')->onlyOnDetail(),
+
             FormField::addFieldset('Message details')
                 ->addCssClass('shadow-sm border p-3 rounded mb-4'),
+
             TextEditorField::new('message'),
+            
             DateTimeField::new('createdAt', 'Sent On'),
         ];
     }

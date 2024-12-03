@@ -56,6 +56,9 @@
     <div class="col-md-10 ms-sm-auto col-lg-10 px-4">
       <div class="user-profile-container">
         <div class="d-flex justify-content-between flex-wrap">
+          {% if paginatedPastEvents is empty %}
+            <p class="text-center">Vous ne vous êtes inscrit(e) à aucun evénement.</p>
+          {% endif %}
           {% for event in paginatedPastEvents|sort((a, b) => b.date <=> a.date) %}
             <div class="card spaced-cards" style="max-width: 23rem;">
               <div class="card-header bg-white border-0">
