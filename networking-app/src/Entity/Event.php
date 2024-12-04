@@ -183,4 +183,19 @@ class Event
 
         return $this;
     }
+
+    public function __serialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'file' => $this->file,
+            'description' => $this->description,
+            'company' => $this->company,
+            'date' => $this->date,
+            'time' => $this->time,
+            'user' => $this->user,
+            'subscribedUsers' => $this->subscribedUsers,
+        ];
+    }
 }

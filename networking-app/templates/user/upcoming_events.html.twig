@@ -62,15 +62,19 @@
           {% for subscribedEvent in subscribedEvents|sort((a, b) => b.date <=> a.date) %}
           <div class="card spaced-cards" style="max-width: 23rem;">
             <div class="card-header bg-white border-0">
-              <h5 class="float-start mt-3"><strong>{{ subscribedEvent.title }}</strong></h5>
-              <p class="float-end mt-3">{{ subscribedEvent.company }}</p>
+              {% if subscribedEvent.file == null %}
+                <img class="img-fluid" src="{{ asset('uploads/events/'  ~ '6491439.jpg') }}" alt="{{ subscribedEvent.title }}" style="width: 100%; height: 200px; object-fit: cover">
+              {% else %}
+                <img src="{{ asset('uploads/events/'  ~ subscribedEvent.file) }}" alt="{{ subscribedEvent.title }}" style="width: 100%; height: 200px; object-fit: cover">
+              {% endif %}  
             </div>
             <div class="card-body">
               <div class="card-text">
-                  <p>{{ subscribedEvent.description|raw }}</p>
+                <h5 class="float-start mt-3"><strong>{{ subscribedEvent.title }}</strong></h5>
               </div>
             </div>
             <div class="card-footer bg-white border-0">
+              <p><strong>{{ subscribedEvent.company }}</strong></p>
               <p>{{ subscribedEvent.date|date("d/m/Y") }} | {{ subscribedEvent.time|date("H:i") }}</p>
             </div>
           </div>
