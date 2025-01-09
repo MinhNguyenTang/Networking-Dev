@@ -131,7 +131,10 @@ class UserController extends AbstractController
     }
 
     #[Route('/upcoming_events', name: 'app_upcoming_events', methods: ['GET'])]
-    public function upcomingEvents(EventRepository $eventRepository) : Response
+    public function upcomingEvents(
+        EventRepository $eventRepository,
+        PaginatorInterface $paginator,
+        Request $request) : Response
     {
         $user = $this->getUser();
         if (!$user) {
@@ -141,7 +144,13 @@ class UserController extends AbstractController
         $subscribedEvents = $user->getEventSubscription()->filter(function (Event $event) use ($currentDate) {
             return $event->getDate() > $currentDate;
         });
-        return $this->render('user/upcoming_events.html.twig', compact('subscribedEvents'));
+
+        $paginatedUpcomingEvents = $paginator->paginate(
+            $subscribedEvents,
+            $request->query->getInt('page', 1),
+            6,           
+        );
+        return $this->render('user/upcoming_events.html.twig', compact('paginatedUpcomingEvents'));
     }
 
     #[Route('/notifications', name: 'app_notifications', methods: ['GET'])]

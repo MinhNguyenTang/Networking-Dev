@@ -48,12 +48,13 @@ class EventRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('e')
             ->where('e.date < :now')
-            // ->andWhere('e.time < :currentTime')
+            // ->andWhere('e.time > :currentTime')
             ->andWhere(':user MEMBER OF e.subscribedUsers')
             ->setParameter('now', new DateTime())
             // ->setParameter('currentTime', new DateTime())
             ->setParameter('user', $user)
             ->orderBy('e.date', 'DESC')
+            ->addOrderBy('e.time', 'DESC')
             ->getQuery()
             ->getResult();
     }

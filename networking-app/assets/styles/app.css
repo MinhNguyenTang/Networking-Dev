@@ -87,11 +87,6 @@ body {
     border-radius: 45px;
 }
 
-footer {
-    min-height: 390px;
-    /* background-color: #e5e5e5; */
-}
-
 .framed-schedule {
     border: 1px solid #000;
     border-width: 0.5px;
@@ -108,11 +103,6 @@ footer {
     border: 1px solid #555;
 }
 
-.border-top {
-    width: 96%;
-    margin: auto;
-}
-
 .error-message {
     color: red;
 }
@@ -125,14 +115,19 @@ input {
     padding: 54px;
 }
 
+/* Footer */
+footer {
+    min-height: 390px;
+    /* background-color: #e5e5e5; */
+}
 .upper-footer {
     width: 96%;
     margin: auto;
 }
-
-/* .background-image-contact {
-
-} */
+.border-top {
+    width: 94%;
+    margin: auto;
+}
 
 .spaced-cards {
     margin-bottom: 7%;
@@ -146,20 +141,23 @@ input {
     font: 17px/1.5 sans-serif; 
 }
 
-.navbar {
-    padding: 25px;
-}
 
 .no-underline {
     text-decoration: none;
 }
 
+
+/* Navbar */
+.navbar {
+    padding: 25px;
+}
 .sticky-navbar {
     position: sticky;
     top: 0;
     z-index: 10;
 }
 
+/* Social media icons */
 .social-icon {
     display: inline-flex; /* Assure que l'icône est bien centrée dans le carré */
     justify-content: center;
@@ -172,15 +170,11 @@ input {
     margin-right: 10px;
 }
 
-/* .social-icon:hover {
-
-} */
-
 .text-h {
     padding-top: 3.25%;
 }
 
-/* On Chrome, Edge, Opera and Safari */
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 9px;
     display: none;

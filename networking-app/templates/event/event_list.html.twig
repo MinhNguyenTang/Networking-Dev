@@ -8,16 +8,16 @@
 <div class="container mt-5">
     <div class="card rounded">
         <div class="row g-0">
-            <div class="col-md-5">
+            <div class="col-md-5 d-flex justify-content-center align-items-center">
                 {% if event.file == null %}
-                    <img class="img-fluid" src="{{ asset('uploads/events/'  ~ '6491439.jpg') }}" alt="{{ event.title }}" style="width: 100% ;height: 200px; object-fit: cover">
+                    <img class="img-fluid ms-3 me-3 mt-3 mb-3 rounded" src="{{ asset('uploads/events/'  ~ '6491439.jpg') }}" alt="{{ event.title }}" style="width: 100% ;height: 200px; object-fit: cover">
                 {% else %}
-                    <img src="{{ asset('uploads/events/'  ~ event.file) }}" alt="{{  event.title }}" style="width: 100% ;height: 200px; object-fit: cover">
+                    <img class="img-fluid ms-3 me-3 mt-3 mb-3 rounded" src="{{ asset('uploads/events/'  ~ event.file) }}" alt="{{ event.title }}" style="width: 100% ;height: 200px; object-fit: cover">
                 {% endif %}
             </div>
             <div class="col-md-7">
                 <div class="card-header bg-white border-0">
-                    <h5><strong>{{ event.title }}</strong></h5>
+                    <h5 class="mt-2"><strong><a href="{{ path('app_event_details', {'id': event.id}) }}" style="text-decoration: none">{{ event.title }}</a></strong></h5>
                 </div>
                 <div class="card-body">
                     <div class="card-text">
